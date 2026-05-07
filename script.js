@@ -5,7 +5,12 @@ function setup() {
 }
 
 function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
+const search = document.createElement("div");
+document.body.appendChild(search);
+const searchInput = document.createElement("input");
+search.appendChild(searchInput);
+  const rootElem = document.createElement("div");
+  document.body.appendChild(rootElem);
   const copyWrite = document.createElement("div");
   document.body.appendChild(copyWrite);
   copyWrite.innerHTML = `<p>All data is from <a href="https://www.tvmaze.com/" target="_blank">TVmaze.com</a></p>`;
