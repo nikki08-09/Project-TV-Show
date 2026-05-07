@@ -10,11 +10,17 @@ document.body.appendChild(search);
 const searchInput = document.createElement("input");
 search.appendChild(searchInput);
 searchInput.placeholder = "Search episodes...";
+const searchCount = document.createElement("span");
+search.appendChild(searchCount);
+searchCount.textContent = `Displaying ${episodeList.length} / ${episodeList.length} episodes`;
+searchCount.style.marginLeft = "10px";
+
   const rootElem = document.createElement("div");
   document.body.appendChild(rootElem);
   const copyWrite = document.createElement("div");
   document.body.appendChild(copyWrite);
   copyWrite.innerHTML = `<p>All data is from <a href="https://www.tvmaze.com/" target="_blank">TVmaze.com</a></p>`;
+    
   episodeList.forEach((episode) => {
     const episodeElem = document.createElement("div");
     episodeElem.style.border = "1px solid black";
@@ -32,11 +38,27 @@ searchInput.placeholder = "Search episodes...";
       <h2>${episode.name}</h2>
       <img src="${episode.image.medium}" alt="${episode.name}">
       <h3>Season ${episode.season}, Episode ${episode.number}</h3>
-      <p>${episode.summary}</p>
+      <p id="summary">${episode.summary}</p>
 
       `;
     rootElem.appendChild(episodeElem);
+    const searchInput = document.querySelector("input");
+    searchInput.addEventListener("input", (event) => {
+      const searchTerm = event.target.value.toLowerCase();
+      if (
+        episode.name.toLowerCase().includes(searchTerm) ||
+        episode.summary.toLowerCase().includes(searchTerm)
+      ) {
+        episodeElem.style.display = "block";
+      } else {
+        episodeElem.style.display = "none";
+      }
+      const visibleEpisodes = document.querySelectorAll(".episode:not([style*='display: none'])");
+      searchCount.textContent = `Displaying ${visibleEpisodes.length} / ${episodeList.length} episodes`;
+    });
   });
+
+ 
 }
 
 window.onload = setup;
