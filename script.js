@@ -9,6 +9,7 @@ const search = document.createElement("div");
 document.body.appendChild(search);
 const searchInput = document.createElement("input");
 search.appendChild(searchInput);
+searchInput.placeholder = "Search episodes...";
   const rootElem = document.createElement("div");
   document.body.appendChild(rootElem);
   const copyWrite = document.createElement("div");
