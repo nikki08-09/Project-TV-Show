@@ -88,8 +88,8 @@ async function setup() {
     makePageForEpisodes(episodes, content);
   });
 }
-function makePageForShows(showList, rootElem) {
-   const rootElem = document.createElement("div");
+function makePageForShows(showList, content) {
+  const rootElem = document.createElement("div");
 
   rootElem.style.display = "grid";
   rootElem.style.gridTemplateColumns =
