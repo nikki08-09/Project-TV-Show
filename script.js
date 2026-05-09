@@ -45,6 +45,10 @@ async function setup() {
     showSelect.appendChild(option);
   });
 
+  const content = document.createElement("div");
+  app.appendChild(content);
+  
+  
 }
 
 function makePageForEpisodes(episodeList) {
