@@ -47,6 +47,8 @@ async function setup() {
 
   const content = document.createElement("div");
   app.appendChild(content);
+
+  makePageForShows(allShows, content);
   
    showSelect.addEventListener("change", async (event) => {
     const selectedShowId = event.target.value;
