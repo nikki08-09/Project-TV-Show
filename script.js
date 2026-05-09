@@ -21,7 +21,16 @@ async function setup() {
     `;
     return;
   }
- 
+ const app = document.createElement("div");
+  document.body.appendChild(app);
+
+  const topBar = document.createElement("div");
+  topBar.style.padding = "20px";
+  topBar.style.backgroundColor = "rgb(37, 102, 140)";
+  topBar.style.display = "flex";
+  topBar.style.gap = "10px";
+  topBar.style.alignItems = "center";
+  app.appendChild(topBar);
 }
 
 function makePageForEpisodes(episodeList) {
