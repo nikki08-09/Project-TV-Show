@@ -31,6 +31,20 @@ async function setup() {
   topBar.style.gap = "10px";
   topBar.style.alignItems = "center";
   app.appendChild(topBar);
+  
+  const showSelect = document.createElement("select");
+  topBar.appendChild(showSelect);
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select a show";
+  showSelect.appendChild(defaultOption);
+  allShows.forEach((show) => {
+    const option = document.createElement("option");
+    option.value = show.id;
+    option.textContent = show.name;
+    showSelect.appendChild(option);
+  });
+
 }
 
 function makePageForEpisodes(episodeList) {
