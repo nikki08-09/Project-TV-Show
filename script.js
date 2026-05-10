@@ -86,6 +86,19 @@ async function setup() {
     }
 
     makePageForEpisodes(episodes, content);
+    const navigation = document.createElement("div");
+    navigation.style.padding = "20px";
+    navigation.innerHTML = `
+    <button id="backButton">Back to shows</button>
+    `;
+    content.insertBefore(navigation, content.firstChild);
+
+    const backButton = document.getElementById("backButton");
+    backButton.addEventListener("click", () => {
+      content.innerHTML = "";
+      makePageForShows(allShows, content);
+      showSelect.value = "";
+    });
   });
 }
 
