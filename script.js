@@ -108,7 +108,7 @@ function makePageForShows(showList, content) {
     showElem.style.backgroundColor = "white";
 
     showElem.innerHTML = `
-    <h2>${show.name}</h2>
+    <h2 class="title">${show.name}</h2>
 
     ${show.image ? `<img src="${show.image.medium}" alt="${show.name}">` : ""}
 
@@ -120,6 +120,33 @@ function makePageForShows(showList, content) {
     `;
 
     rootElem.appendChild(showElem);
+    const title = showElem.querySelector(".title");
+    title.style.color = "blue";
+    title.style.cursor = "pointer";
+    title.addEventListener("click", async () => {
+      content.innerHTML = "";
+      const episodes = await fetch(
+        `https://api.tvmaze.com/shows/${show.id}/episodes`,
+      )
+        .then((response) => response.json())
+        .catch((error) => {
+          content.innerHTML = `
+    <p style="color:red;">
+    Error fetching episodes: ${error.message}
+    </p>
+    `;
+          return [];
+        });
+      if (!Array.isArray(episodes)) {
+        content.innerHTML = `
+    <p style="color:red;">
+    Unexpected episode format
+    </p>
+    `;
+        return;
+      }
+      makePageForEpisodes(episodes, content);
+    });
   });
 }
 
